@@ -33,6 +33,6 @@ class User (
     }
 
     fun returnBook(bookName: String){
-        this.userLoanHistories.first(){history -> history.bookName == bookName}.doReturn()
+        this.userLoanHistories.first(){ history -> history.bookName == bookName }.doReturn()
     }
 }
