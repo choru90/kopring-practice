@@ -6,7 +6,7 @@ import javax.persistence.*
 
 @Entity
 class User (
-        var name: String,
+    var name: String,
         val age: Int?,
 
         @OneToMany(mappedBy = "user", cascade = [CascadeType.ALL], orphanRemoval = true)
@@ -17,7 +17,6 @@ class User (
         val id: Long? = null,
 
         ){
-
     init {
         if(name.isBlank()){
             throw java.lang.IllegalArgumentException("이름은 비어 있을 수 없습니다")
@@ -31,7 +30,6 @@ class User (
     fun loanBook(book: Book){
         this.userLoanHistories.add(UserLoanHistory(this, book.name))
     }
-
     fun returnBook(bookName: String){
         this.userLoanHistories.first(){ history -> history.bookName == bookName }.doReturn()
     }
