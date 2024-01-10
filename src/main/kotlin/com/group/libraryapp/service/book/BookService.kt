@@ -5,9 +5,9 @@ import com.group.libraryapp.domain.book.BookRepository
 import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
-import com.group.libraryapp.dto.BookLoanRequest
-import com.group.libraryapp.dto.BookRequest
-import com.group.libraryapp.dto.BookReturnRequest
+import com.group.libraryapp.dto.book.BookLoanRequest
+import com.group.libraryapp.dto.book.BookRequest
+import com.group.libraryapp.dto.book.BookReturnRequest
 import com.group.libraryapp.utils.fail
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

@@ -2,6 +2,9 @@ package com.group.libraryapp.service.user
 
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
+import com.group.libraryapp.dto.user.BookHistoryResponse
+import com.group.libraryapp.dto.user.UserHistoryResponse
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import com.group.libraryapp.dto.user.response.UserResponse
@@ -36,5 +39,10 @@ class UserService (
     fun deleteUser(name: String){
         val user = userRepository.findByName(name) ?: fail()
         userRepository.delete(user)
+    }
+
+    @Transactional(readOnly = true)
+    fun getUserLoanHistories(): List<UserHistoryResponse> {
+        return userRepository.findAll().map(UserHistoryResponse::of)
     }
 }

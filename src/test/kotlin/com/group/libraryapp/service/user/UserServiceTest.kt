@@ -2,6 +2,9 @@ package com.group.libraryapp.service.user
 
 import com.group.libraryapp.domain.user.User
 import com.group.libraryapp.domain.user.UserRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
+import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
+import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
 import com.group.libraryapp.dto.user.request.UserCreateRequest
 import com.group.libraryapp.dto.user.request.UserUpdateRequest
 import com.group.libraryapp.service.user.UserService
@@ -14,6 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest
 @SpringBootTest
 class UserServiceTest @Autowired constructor(
      private val userRepository: UserRepository,
+     private val userLoanHistoryRepository: UserLoanHistoryRepository,
      private val userService: UserService
 ) {
 
@@ -71,6 +75,40 @@ class UserServiceTest @Autowired constructor(
         userService.deleteUser("A")
         // then
         assertThat(userRepository.findAll()).isEmpty()
+    }
+
+    @Test
+    fun getUserLoanHistoriesTest(){
+        // given
+        userRepository.save(User("A",null))
+        // when
+        val results = userService.getUserLoanHistories()
+        // then
+        assertThat(results).hasSize(1)
+        assertThat(results[0].name).isEqualTo("A")
+        assertThat(results[0].books).isEmpty()
+    }
+
+    @Test
+    fun getUserLoanHistoriesTest2(){
+        // given
+        val savedUser = userRepository.save(User("A", null))
+        userLoanHistoryRepository.saveAll(listOf(
+         UserLoanHistory.fixture(savedUser, "책1", UserLoanStatus.LOANED),
+         UserLoanHistory.fixture(savedUser, "책2", UserLoanStatus.LOANED),
+         UserLoanHistory.fixture(savedUser, "책3", UserLoanStatus.RETURNED)
+        ))
+
+        // when
+        val results = userService.getUserLoanHistories()
+        // then
+        assertThat(results).hasSize(1)
+        assertThat(results[0].name).isEqualTo("A")
+        assertThat(results[0].books).hasSize(3)
+        assertThat(results[0].books).extracting("name")
+            .containsExactlyInAnyOrder("책1", "책2","책3")
+        assertThat(results[0].books).extracting("isReturn")
+            .containsExactlyInAnyOrder(false, false, true)
     }
 
 

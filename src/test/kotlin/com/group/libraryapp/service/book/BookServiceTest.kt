@@ -8,9 +8,9 @@ import com.group.libraryapp.domain.user.UserRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistory
 import com.group.libraryapp.domain.user.loanhistory.UserLoanHistoryRepository
 import com.group.libraryapp.domain.user.loanhistory.UserLoanStatus
-import com.group.libraryapp.dto.BookLoanRequest
-import com.group.libraryapp.dto.BookRequest
-import com.group.libraryapp.dto.BookReturnRequest
+import com.group.libraryapp.dto.book.BookLoanRequest
+import com.group.libraryapp.dto.book.BookRequest
+import com.group.libraryapp.dto.book.BookReturnRequest
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test

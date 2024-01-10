@@ -1,8 +1,8 @@
 package com.group.libraryapp.controller.book;
 
-import com.group.libraryapp.dto.BookLoanRequest;
-import com.group.libraryapp.dto.BookRequest;
-import com.group.libraryapp.dto.BookReturnRequest;
+import com.group.libraryapp.dto.book.BookLoanRequest;
+import com.group.libraryapp.dto.book.BookRequest;
+import com.group.libraryapp.dto.book.BookReturnRequest;
 import com.group.libraryapp.service.book.BookService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
