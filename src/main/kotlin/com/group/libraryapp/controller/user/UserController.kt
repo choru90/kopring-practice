@@ -1,4 +1,4 @@
-package com.group.libraryapp.controller
+package com.group.libraryapp.controller.user
 
 import com.group.libraryapp.dto.user.UserHistoryResponse
 import com.group.libraryapp.dto.user.request.UserCreateRequest
